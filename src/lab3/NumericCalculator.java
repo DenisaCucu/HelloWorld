@@ -5,8 +5,6 @@
  */
 package lab3;
 
-import lab2.*;
-
 /**
  *
  * @author alexb
@@ -16,16 +14,16 @@ public class NumericCalculator {
     double number1;
     double number2;
     
-    double[] numbers;
+    double[] numbers; 
     
     static int nrOperations = 0;
     
-    public NumericCalculator()
+    public NumericCalculator() //constructor default
     {}
     
-    public NumericCalculator(double nr1, double nr2)
+    public NumericCalculator(double nr1, double nr2) //constructori cu 2 parametrii
     {
-        this.number1 = nr1;
+        this.number1 = nr1; 
         this.number2 = nr2;
         
         this.numbers = new double[2];        
@@ -33,9 +31,9 @@ public class NumericCalculator {
         numbers[1] = nr2;
     }
     
-    public NumericCalculator(double[] nrs)
+    public NumericCalculator(double[] nrs) //constructor cu un array de numere
     {
-        this.numbers = nrs;
+        this.numbers = nrs; //this = obiectul curent
     }
     
     
@@ -77,4 +75,24 @@ public class NumericCalculator {
       return nrOperations;   
     }   
     
+    public double Multiply(double n1, double n2)
+    {
+        nrOperations++;
+        
+        return n1 * n2;
+    }
+
+    public double Multiply(double[] nrs)
+    {
+        double result = 1;
+        
+        for (int i = 0; i < nrs.length; i++)
+        {
+            result *= nrs[i];
+            
+            nrOperations++;
+        }
+        
+        return result;
+    }
 }
