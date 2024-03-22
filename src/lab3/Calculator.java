@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
+ *
  * @author alexb
  */
 public class Calculator {
@@ -37,7 +38,7 @@ public class Calculator {
                 Double x = Double.parseDouble(input1);
                 Double y = Double.parseDouble(input2);
                                
-                NumericCalculator calculator = new NumericCalculator(x, y); //obiect(argument x, argument y)
+                NumericCalculator calculator = new NumericCalculator(x, y);
                 
                 result = calculator.Sum();
                 
@@ -54,7 +55,7 @@ public class Calculator {
                 
                 double[] numbers = ReadConsoleNumbers(n);
                 
-                NumericCalculator calculator1 = new NumericCalculator(numbers); //ii trimit un array de numere
+                NumericCalculator calculator1 = new NumericCalculator(numbers);
                 
                 result = calculator1.Sum();
                 
@@ -64,40 +65,39 @@ public class Calculator {
                 
                 break;
             case 3: 
-                // here goes the code for multiplication operation  
-                System.out.println("First number: ");
-                String input3 = ReadConsole();
-                
-                System.out.println("Second number: ");
-                String input4 = ReadConsole();
+                System.out.println("First number:");
+                String input3 = ReadConsole(); 
+                Double x1 = Double.parseDouble(input3);
 
-                Double x1 = Double.parseDouble(input3); //punem parseDouble pentru a converti stringul in double
+                System.out.println("Second number:");
+                String input4 = ReadConsole();
                 Double y1 = Double.parseDouble(input4);
 
-                NumericCalculator calculator2 = new NumericCalculator(x1, y1); //obiect(argument x, argument y)
-
-                result = calculator2.Multiply(x1, y1); //apelam metoda Multiply din clasa NumericCalculator
+                NumericCalculator calculator2 = new NumericCalculator(x1, y1);
+                result = calculator2.Multiply();
 
                 System.out.println("Result:" + result);
-
-                System.out.println("Number of operations: " + NumericCalculator.GetNumberOfOperations());                
+                System.err.println("Number of operations: " + NumericCalculator.GetNumberOfOperations());
+                
                 break;
+
             case 4:
-                //operatia de inmultire cu mai multe numere
-                System.out.println("How many numbers: ");
+                System.out.println("How many numbers:");
                 String inputn1 = ReadConsole();
-                
                 int n1 = Integer.parseInt(inputn1);
-
-                double[] numbers1 = ReadConsoleNumbers(n1);
-
-                NumericCalculator calculator3 = new NumericCalculator(numbers1); //ii trimit un array de numere
                 
-                result = calculator3.Multiply(numbers1); //apelam metoda Multiply din clasa NumericCalculator
-
+                double[] numbers1 = ReadConsoleNumbers(n1);
+                
+                NumericCalculator calculator3 = new NumericCalculator(numbers1);
+                
+                result = calculator3.Multiply();
+                
                 System.out.println("Result:" + result);
-
+                
                 System.out.println("Number of operations: " + NumericCalculator.GetNumberOfOperations());
+                
+                break;
+            
             case 5:
                 SpreadSheetCalculator cellCalculator = new SpreadSheetCalculator();
                         
@@ -114,7 +114,64 @@ public class Calculator {
                                 
                 break;
                 
-                // add code for computing 7 and 8 spreadsheet operations
+            case 6:
+                SpreadSheetCalculator cellCalculator1 = new SpreadSheetCalculator();
+                
+                System.out.println("How many cells:");
+                String inputn2 = ReadConsole();
+                int n2 = Integer.parseInt(inputn2);
+                
+                Cell[] cells = new Cell[n2];
+                
+                for (int i = 0; i < n2; i++)
+                {
+                    System.out.println("Cell value:");
+                    cells[i] = new Cell("", i + 1, 'A');
+                    cells[i].value = ReadConsole();
+                }
+                
+                Cell sumResult1 = cellCalculator1.Sum(cells);
+                System.out.println("Sum of cells: " + sumResult1.value);
+                
+                break;
+            
+            case 7:
+                SpreadSheetCalculator cellCalculator2 = new SpreadSheetCalculator();
+                
+                System.out.println("First cell value:");
+                Cell c3 = new Cell("", 1, 'A');
+                c3.value = ReadConsole();
+                
+                System.out.println("Second cell value:");
+                Cell c4 = new Cell("", 2, 'A');
+                c4.value = ReadConsole();
+                
+                Cell productResult = cellCalculator2.Multiply(c3, c4);
+                System.out.println("Product of cells: " + productResult.value);
+                
+                break;
+            
+            case 8:
+                SpreadSheetCalculator cellCalculator3 = new SpreadSheetCalculator();
+                
+                System.out.println("How many cells:");
+                String inputn3 = ReadConsole();
+                int n3 = Integer.parseInt(inputn3);
+                
+                Cell[] cells1 = new Cell[n3];
+                
+                for (int i = 0; i < n3; i++)
+                {
+                    System.out.println("Cell value:");
+                    cells1[i] = new Cell("", i + 1, 'A');
+                    cells1[i].value = ReadConsole();
+                }
+                
+                Cell productResult1 = cellCalculator3.Multiply(cells1);
+                System.out.println("Product of cells: " + productResult1.value);
+                
+                break;
+
         }  
         
         System.out.println("Total number of numeric operations: " + NumericCalculator.nrOperations);

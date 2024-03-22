@@ -5,8 +5,6 @@
  */
 package lab3;
 
-import lab2.*;
-
 /**
  *
  * @author alexb
@@ -59,5 +57,45 @@ public class SpreadSheetCalculator{
         
         c1.value = convertedValue.toString();
    }
+
+   public Cell Sum(Cell[] cells)
+   {
+       double sum = 0.0;
+       
+       for (int i = 0; i < cells.length; i++)
+       {
+           sum += Double.parseDouble(cells[i].value);
+       }
+       
+       Cell cellResult = new Cell(Double.toString(sum), cells[0].row, 'R');
+       
+       return cellResult;
+   }
+
+   public Cell Multiply(Cell c1, Cell c2)
+   {
+       Double result = Double.parseDouble(c1.value) * Double.parseDouble(c2.value);
+        
+        Cell cellResult = new Cell(result.toString(), c1.row, 'R');
+       // cellResult.value = result.toString(); - no need
+        
+        return cellResult;
+   }
+
+   public Cell Multiply(Cell[] cells)
+   {
+       double product = 1.0;
+       
+       for (int i = 0; i < cells.length; i++)
+       {
+           product *= Double.parseDouble(cells[i].value);
+       }
+       
+       Cell cellResult = new Cell(Double.toString(product), cells[0].row, 'R');
+       
+       return cellResult;
+   }
+
+
 }
 
